@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.security.keystore.KeyProperties;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
@@ -119,6 +120,11 @@ public class FingerPrintActivity extends Activity implements View.OnClickListene
 
     @Override
     public void success(String token) {
+        if(token.equals(FingerPrintActivity.token)){
+            Log.e("success","确认是该用户");
+        }else{
+            Log.e("success","确认不是开启指纹登陆的用户"); //正常走不到这里，前边就不会进指纹验证
+        }
         tvHint.setText("验证通过:" + token);
     }
 
